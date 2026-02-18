@@ -121,7 +121,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 👤 Author
 
-**Designed & Developed by [Rafi](https://github.com/rafiariyata)**
+**Designed & Developed by [Rafi](https://github.com/rafiariyanta)**
 
 ---
 
