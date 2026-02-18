@@ -180,9 +180,9 @@ export const GET_ANIME_BY_ID = `
   }
 `;
 
-// Search anime
+// Search anime with filters
 export const SEARCH_ANIME = `
-  query SearchAnime($search: String, $page: Int, $perPage: Int) {
+  query SearchAnime($search: String, $genre: String, $year: Int, $page: Int, $perPage: Int) {
     Page(page: $page, perPage: $perPage) {
       pageInfo {
         total
@@ -190,7 +190,7 @@ export const SEARCH_ANIME = `
         lastPage
         hasNextPage
       }
-      media(search: $search, type: ANIME, sort: POPULARITY_DESC) {
+      media(search: $search, type: ANIME, genre: $genre, seasonYear: $year, sort: POPULARITY_DESC) {
         id
         title {
           romaji
@@ -208,6 +208,7 @@ export const SEARCH_ANIME = `
         status
         averageScore
         genres
+        seasonYear
         format
       }
     }
@@ -288,8 +289,8 @@ export const GET_SEASONAL_ANIME = `
 
 // Recommended anime - Get highly rated anime from various genres
 export const GET_RECOMMENDED_ANIME = `
-  query GetRecommendedAnime {
-    Page(page: 1, perPage: 5) {
+  query GetRecommendedAnime($page: Int, $perPage: Int) {
+    Page(page: $page, perPage: $perPage) {
       pageInfo {
         total
         currentPage
@@ -324,5 +325,12 @@ export const GET_RECOMMENDED_ANIME = `
         format
       }
     }
+  }
+`;
+
+// Genre collection - Get all available genres
+export const GET_GENRE_COLLECTION = `
+  query GetGenreCollection {
+    GenreCollection
   }
 `;

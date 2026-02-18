@@ -1,31 +1,35 @@
-import { GET_TRENDING_ANIME, GET_POPULAR_ANIME, GET_RECOMMENDED_ANIME } from '@/lib/anilist-queries';
-import { Anime, AnimeResponse } from '@/lib/anilist-types';
-import AnimeCard from '@/components/AnimeCard';
-import AnimeCarousel from '@/components/AnimeCarousel';
-import HeroCarousel from '@/components/HeroCarousel';
-import { fetchGraphQL } from '@/lib/apollo-client';
+import {
+  GET_TRENDING_ANIME,
+  GET_POPULAR_ANIME,
+  GET_RECOMMENDED_ANIME,
+} from "@/lib/anilist-queries";
+import { Anime, AnimeResponse } from "@/lib/anilist-types";
+import AnimeCard from "@/components/AnimeCard";
+import AnimeCarousel from "@/components/AnimeCarousel";
+import HeroCarousel from "@/components/HeroCarousel";
+import { fetchGraphQL } from "@/lib/apollo-client";
 
 async function getTrendingAnime(): Promise<Anime[]> {
-  const data = await fetchGraphQL<AnimeResponse>(
-    GET_TRENDING_ANIME,
-    { page: 1, perPage: 10 }
-  );
+  const data = await fetchGraphQL<AnimeResponse>(GET_TRENDING_ANIME, {
+    page: 1,
+    perPage: 10,
+  });
   return data?.Page?.media || [];
 }
 
 async function getPopularAnime(): Promise<Anime[]> {
-  const data = await fetchGraphQL<AnimeResponse>(
-    GET_POPULAR_ANIME,
-    { page: 1, perPage: 10 }
-  );
+  const data = await fetchGraphQL<AnimeResponse>(GET_POPULAR_ANIME, {
+    page: 1,
+    perPage: 10,
+  });
   return data?.Page?.media || [];
 }
 
 async function getRecommendedAnime(): Promise<Anime[]> {
-  const data = await fetchGraphQL<AnimeResponse>(
-    GET_RECOMMENDED_ANIME,
-    {}
-  );
+  const data = await fetchGraphQL<AnimeResponse>(GET_RECOMMENDED_ANIME, {
+    page: 1,
+    perPage: 5,
+  });
   return data?.Page?.media || [];
 }
 
