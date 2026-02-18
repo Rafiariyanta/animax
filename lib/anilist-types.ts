@@ -45,6 +45,55 @@ export interface Ranking {
   context: string;
 }
 
+export interface VoiceActor {
+  id: number;
+  name: {
+    full: string;
+    native: string;
+  };
+  image: {
+    large: string;
+    medium: string;
+  };
+  language: string;
+}
+
+export interface CharacterNode {
+  id: number;
+  name: {
+    full: string;
+    native: string;
+  };
+  image: {
+    large: string;
+    medium: string;
+  };
+}
+
+export interface CharacterEdge {
+  node: CharacterNode;
+  role: string;
+  voiceActors: VoiceActor[];
+}
+
+export interface StaffNode {
+  id: number;
+  name: {
+    full: string;
+    native: string;
+  };
+  image: {
+    large: string;
+    medium: string;
+  };
+  language: string;
+}
+
+export interface StaffEdge {
+  node: StaffNode;
+  role: string;
+}
+
 export interface Anime {
   id: number;
   title: AnimeTitle;
@@ -65,6 +114,12 @@ export interface Anime {
   trailer: Trailer | null;
   streamingEpisodes: StreamingEpisode[];
   nextAiringEpisode: NextAiringEpisode | null;
+  characters: {
+    edges: CharacterEdge[];
+  };
+  staff: {
+    edges: StaffEdge[];
+  };
 }
 
 export interface PageInfo {

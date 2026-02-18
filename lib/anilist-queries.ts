@@ -131,6 +131,51 @@ export const GET_ANIME_BY_ID = `
         thumbnail
         url
       }
+      characters {
+        edges {
+          node {
+            id
+            name {
+              full
+              native
+            }
+            image {
+              large
+              medium
+            }
+          }
+          role
+          voiceActors {
+            id
+            name {
+              full
+              native
+            }
+            image {
+              large
+              medium
+            }
+            language
+          }
+        }
+      }
+      staff {
+        edges {
+          node {
+            id
+            name {
+              full
+              native
+            }
+            image {
+              large
+              medium
+            }
+            language
+          }
+          role
+        }
+      }
     }
   }
 `;

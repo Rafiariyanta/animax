@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Play, Plus } from "lucide-react";
 import { Anime } from "@/lib/anilist-types";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 interface HeroCarouselProps {
   anime: Anime[];
@@ -114,17 +115,16 @@ export default function HeroCarousel({ anime }: HeroCarouselProps) {
 
             {/* Action Buttons */}
             <div className="flex gap-4">
-              <Link
-                href={`/anime/${currentAnime.id}`}
-                className="flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-primary-foreground font-medium transition-all hover:scale-105 hover:opacity-90"
-              >
-                <Play className="h-5 w-5" />
-                See Detail
-              </Link>
-              <button className="flex items-center gap-2 rounded-lg bg-secondary px-6 py-3 text-secondary-foreground font-medium transition-all hover:scale-105 hover:opacity-90">
+              <Button asChild size="default" className="gap-2">
+                <Link href={`/anime/${currentAnime.id}`}>
+                  <Play className="h-5 w-5" />
+                  See Detail
+                </Link>
+              </Button>
+              <Button variant="secondary" size="default" className="gap-2">
                 <Plus className="h-5 w-5" />
                 Add to List
-              </button>
+              </Button>
             </div>
           </div>
         </div>

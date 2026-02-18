@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Search, Bell, User } from "lucide-react";
 import { useState } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -49,47 +51,42 @@ export default function Header() {
           {/* Search Input */}
           <div className="flex items-center gap-2">
             {isSearchOpen && (
-              <input
+              <Input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search..."
-                className="w-48 rounded-lg border border-border bg-background px-3 py-1.5 text-sm text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:outline-none transition-all"
+                className="w-48 h-9"
                 autoFocus
               />
             )}
             {/* Search Icon */}
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
-              className="rounded-lg p-2 text-muted-foreground transition-all hover:bg-accent hover:text-foreground focus:ring-2 focus:ring-ring"
               aria-label="Search"
             >
               <Search className="h-5 w-5" />
-            </button>
+            </Button>
           </div>
 
           {/* Theme Toggle */}
           <ThemeToggle />
 
           {/* Notifications Icon */}
-          <button
-            className="relative rounded-lg p-2 text-muted-foreground transition-all hover:bg-accent hover:text-foreground focus:ring-2 focus:ring-ring"
-            aria-label="Notifications"
-          >
+          <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
             <Bell className="h-5 w-5" />
             <span className="absolute right-1.5 top-1.5 flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
             </span>
-          </button>
+          </Button>
 
           {/* Profile Icon */}
-          <button
-            className="rounded-full p-1 text-muted-foreground transition-all hover:bg-accent hover:text-foreground focus:ring-2 focus:ring-ring"
-            aria-label="Profile"
-          >
+          <Button variant="ghost" size="icon" aria-label="Profile">
             <User className="h-6 w-6" />
-          </button>
+          </Button>
         </div>
       </div>
     </header>
